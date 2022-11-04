@@ -38,7 +38,7 @@ python3.10 -m pip install -r requirements.txt  # Only needed once!
 Here's a part of example expected output:
 
     Initial input:
-    ```rst
+    ```
     4. !s
     
     ```
@@ -49,7 +49,7 @@ Here's a part of example expected output:
     =======================
     
     New input:
-    ```rst
+    ```
     4. M!s
     
     ```
@@ -61,7 +61,7 @@ Here's a part of example expected output:
     =======================
     
     New input:
-    ```rst
+    ```
     m:p
     ===
     
@@ -74,7 +74,7 @@ Here's a part of example expected output:
     =======================
     
     New input:
-    ```rst
+    ```
     4. ye!
     7. 2
     
@@ -87,7 +87,7 @@ Here's a part of example expected output:
     =======================
     
     New input:
-    ```rst
+    ```
     4. Vs!
     
     ```

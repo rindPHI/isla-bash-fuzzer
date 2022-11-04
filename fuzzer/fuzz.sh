@@ -99,11 +99,11 @@ main () {
 ########## ISLa FUNCTIONS ##########
 
 createInitialInput () {
-  # Create an initial input at `$POPULATION_DIR/inp_0.rst` and
+  # Create an initial input at `$POPULATION_DIR/inp_0.txt` and
   # copy it to `$INP_FILE`
 
-  $ISLA solve $SPECS > $POPULATION_DIR/inp_0.rst
-  cp $POPULATION_DIR/inp_0.rst $INP_FILE
+  $ISLA solve $SPECS > $POPULATION_DIR/inp_0.txt
+  cp $POPULATION_DIR/inp_0.txt $INP_FILE
 }
 
 mutateInput () {
@@ -154,7 +154,7 @@ addToPopulationIfNewCoverage () {
   if [ $? -eq 1 ]
   then
     echo "NEW coverage, adding input to population"
-    cp $INP_FILE $POPULATION_DIR/inp_$2.rst
+    cp $INP_FILE $POPULATION_DIR/inp_$2.txt
     cp $1 $COVERAGES_DIR/cov_$2.json
   else
     echo "NO new coverage, discarding input"
@@ -171,7 +171,7 @@ prepare () {
 }
 
 printInput () {
-  echo '```rst'
+  echo '```'
   cat $1
   echo '```'
   echo 
