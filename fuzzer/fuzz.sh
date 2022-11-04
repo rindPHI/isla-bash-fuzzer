@@ -3,8 +3,9 @@
 ####### INPUT PARAMETERS ######
 
 PROGRAM_UNDER_TEST="$1"
-INP_FILE="$2"
-shift 2
+PACKAGE="$2"
+INP_FILE="$3"
+shift 3
 SPECS=$@
 
 ########## CONSTANTS ##########
@@ -94,7 +95,7 @@ getCoverage () {
   local cov_out=$(mktemp /tmp/new.json.XXXXXX)
   new_coverage=$(mktemp /tmp/new.json.XXXXXX)
 
-  $COVERAGE run --source=docutils $PROGRAM_UNDER_TEST > /dev/null
+  $COVERAGE run --source=$PACKAGE $PROGRAM_UNDER_TEST > /dev/null
   $COVERAGE json -o $cov_out > /dev/null
   
   # Remove metadata (e.g., time stamp), compute hash
