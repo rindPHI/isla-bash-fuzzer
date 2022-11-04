@@ -1,3 +1,0 @@
-forall <internal-reference-nospace> fref in start:
-  exists <labeled-paragraph> lpar in start:
-    fref.<id> = lpar.<label>.<id>
