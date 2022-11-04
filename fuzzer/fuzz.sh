@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# This script accepts three positional parameters and a list
+# of ISLa (grammar + constraints) specification files:
+#
+# fuzz.sh PROGRAM_UNDER_TEST PACKAGE INP_FILE SPECS...
+#
+#   PROGRAM_UNDER_TEST: A Python program accepting a single input as parameter.
+#   PACKAGE:            The Python package whose coverage shall be measured (e.g., `docutils`).
+#   INP_FILE:           A path to the file which should be passed to the program under test.
+#   SPECS:              Grammar (`.py` or `.bnf`) and constraint (`.isla`) files specifying
+#                       the input language of the program under test.
+
 ####### INPUT PARAMETERS ######
 
 PROGRAM_UNDER_TEST="$1"
