@@ -94,6 +94,13 @@ Here's a part of example expected output:
     
     NO new coverage, discarding input
 
+> :warning: This script is really just a demo of what can be done with `isla
+> mutate` without putting in too much effort. It might happen that the fuzzer
+> get's stuck in between; then simple press Ctrl-C and restart. Furthermore,
+> I only added a partial spec for reST, which is why you might encounter
+> messages such as "unexpected indentation" in between, which, however, don't
+> harm the overall fuzzing campaign.
+
 ## Copyright
 
 This project is released under the GNU General Public License v3.0 (see
