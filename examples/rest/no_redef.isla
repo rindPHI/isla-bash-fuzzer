@@ -1,0 +1,4 @@
+forall <label> label_1 in start:
+  forall <label> label_2 in start: (
+    not same_position(label_1, label_2) implies
+    not (label_1.<id> = label_2.<id>))

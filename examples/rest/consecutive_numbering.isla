@@ -1,0 +1,7 @@
+forall <enumeration> enumeration in start:
+  forall <enumeration-item> item_1 in enumeration:
+    forall <enumeration-item> item_2 in enumeration: (
+      consecutive(item_1, item_2) implies
+        (consecutive(item_1, item_2) and 
+         str.to.int(item_2.<number>) = str.to.int(item_1.<number>) + 1 and
+         str.to.int(item_1.<number>) > 0))
