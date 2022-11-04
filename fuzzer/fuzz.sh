@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
 ########## CONSTANTS ##########
-CONSTRAINTS=../examples/rest/*.isla
+PROGRAM_UNDER_TEST="$1"
+INP_FILE="$2"
+shift 2
+SPECS=$@
+
 COVERAGE=coverage
-COVERAGES_DIR=coverages
-GRAMMAR=../examples/rest/rest.bnf
-INP_FILE=../input.rst
 ISLA="python3.10 -O -m isla"
 JSON=json
-POPULATION_DIR=population
-RENDERER=../examples/rest/render_rst.py
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+COVERAGES_DIR="$SCRIPT_DIR/coverages"
+POPULATION_DIR="$SCRIPT_DIR/population"
 
 ##################################
 ########## MAIN ROUTINE ##########
@@ -87,7 +90,7 @@ getCoverage () {
   local cov_out=$(mktemp /tmp/new.json.XXXXXX)
   new_coverage=$(mktemp /tmp/new.json.XXXXXX)
 
-  $COVERAGE run --source=docutils $RENDERER > /dev/null
+  $COVERAGE run --source=docutils $PROGRAM_UNDER_TEST > /dev/null
   $COVERAGE json -o $cov_out > /dev/null
   
   # Remove metadata (e.g., time stamp), compute hash
@@ -126,14 +129,14 @@ createInitialInput () {
   # Create an initial input at `$POPULATION_DIR/inp_0.rst` and
   # copy it to `$INP_FILE`
 
-  $ISLA solve $GRAMMAR $CONSTRAINTS > $POPULATION_DIR/inp_0.rst
+  $ISLA solve $SPECS > $POPULATION_DIR/inp_0.rst
   cp $POPULATION_DIR/inp_0.rst $INP_FILE
 }
 
 mutateInput () {
   # Mutate the input in file `$1` and store it in `$INP_FILE`
 
-  $ISLA mutate $1 $GRAMMAR $CONSTRAINTS -t 1 > $INP_FILE
+  $ISLA mutate $1 $SPECS -t 1 > $INP_FILE
 }
 
 main "$@"
