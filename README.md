@@ -35,6 +35,65 @@ python3.10 -m pip install -r requirements.txt  # Only needed once!
 ./run_fuzzer.sh
 ```
 
+Here's a part of example expected output:
+
+    Initial input:
+    ```rst
+    4. !s
+    
+    ```
+    
+    
+    =======================
+    Round 1
+    =======================
+    
+    New input:
+    ```rst
+    4. M!s
+    
+    ```
+    
+    NEW coverage, adding input to population
+    
+    =======================
+    Round 2
+    =======================
+    
+    New input:
+    ```rst
+    m:p
+    ===
+    
+    ```
+    
+    NEW coverage, adding input to population
+    
+    =======================
+    Round 3
+    =======================
+    
+    New input:
+    ```rst
+    4. ye!
+    7. 2
+    
+    ```
+    
+    NEW coverage, adding input to population
+    
+    =======================
+    Round 4
+    =======================
+    
+    New input:
+    ```rst
+    4. Vs!
+    
+    ```
+    
+    NO new coverage, discarding input
+
 ## Copyright
 
 This project is released under the GNU General Public License v3.0 (see
