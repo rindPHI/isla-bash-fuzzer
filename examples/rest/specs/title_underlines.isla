@@ -1,0 +1,2 @@
+forall <section-title> title in start:
+ str.len(title.<underline>) >= str.len(title.<title-text>)

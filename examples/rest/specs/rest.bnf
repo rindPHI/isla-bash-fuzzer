@@ -1,0 +1,57 @@
+<start>                      ::= <body-elements>
+<body-elements>              ::= <body-element> "\n" <body-elements> | <body-element>
+<body-element>               ::= <section-title> "\n" | <labeled-paragraph> | <paragraph> | <enumeration>
+<section-title>              ::= <title-text> "\n" <underline>
+<title-text>                 ::= <title-first-char> | <title-first-char> <nobr-string>
+<paragraph>                  ::= <first-paragraph-element> <paragraph-elements> "\n"
+<labeled-paragraph>          ::= <label> "\n\n" <paragraph>
+<label>                      ::= ".. _" <id> ":"
+<paragraph-elements>         ::= <paragraph-element> <paragraph-elements> | <paragraph-element>
+<first-paragraph-element>    ::= <paragraph-chars-nospace> | <internal-reference-nospace>
+<paragraph-element>          ::= <paragraph-chars> | <internal-reference>
+<internal-reference>         ::= <presep> <id> "_" <postsep>
+<internal-reference-nospace> ::= <id> "_" <postsep>
+<enumeration>                ::= <enumeration-items> "\n"
+<enumeration-items>          ::= <enumeration-item> "\n" <enumeration-items> | <enumeration-item>
+<enumeration-item>           ::= <number> ". " <nobr-string>
+<paragraph-chars>            ::= <paragraph-char> <paragraph-chars> | <paragraph-char>
+<paragraph-chars-nospace>    ::= <paragraph-char-nospace> <paragraph-chars-nospace> | <paragraph-char-nospace>
+<paragraph-char>             ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" |
+                                 "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+                                 "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" |
+                                 "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" |
+                                 "U" | "V" | "W" | "X" | "Y" | "Z" | "!" | "\"" | "#" | "$" | "%" | "&" | "'" |
+                                 "(" | ")" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" |
+                                 "[" | "\\" | "]" | "^" | "~" | " " | "\t" | "\n" | "\r" | "" | ""
+<paragraph-char-nospace>     ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" |
+                                 "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+                                 "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" |
+                                 "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" |
+                                 "U" | "V" | "W" | "X" | "Y" | "Z" | "!" | "\"" | "#" | "$" | "%" | "&" | "'" | "(" |
+                                 ")" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" |
+                                 "\\" | "]" | "^" | "~"
+<presep>                     ::= " " | "\t" | "," | ";" | "(" | ")"
+<postsep>                    ::= " " | "\t" | "," | "." | ";" | "(" | ")"
+<id>                         ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" |
+                                 "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<number>                     ::= <digit-nonzero> <digits> | <digit>
+<digit-nonzero>              ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<digits>                     ::= <digit> <digits> | <digit>
+<digit>                      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<nobr-string>                ::= <nobr-char> | <nobr-char> <nobr-string>
+<nobr-char>                  ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" |
+                                 "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+                                 "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" |
+                                 "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" |
+                                 "U" | "V" | "W" | "X" | "Y" | "Z" | "!" | "\"" | "#" | "$" | "%" | "&" | "'" | "(" |
+                                 ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" |
+                                 "[" | "\\" | "]" | "^" | "~" | " " | "" | ""
+<title-first-char>           ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" |
+                                 "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+                                 "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" |
+                                 "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" |
+                                 "U" | "V" | "W" | "X" | "Y" | "Z" | "!" | "\"" | "#" | "$" | "%" | "&" | "'" | "(" |
+                                 ")" | "," | "." | "/" | ":" | ";" | "<" | ">" | "?" | "@" | "[" | "\\" | "]" | "^" | "~"
+<underline>                  ::= <eqs> | <dashes>
+<eqs>                        ::= "=" | "=" <eqs>
+<dashes>                     ::= "-" | "-" <dashes>
