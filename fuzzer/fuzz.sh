@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-########## CONSTANTS ##########
+####### INPUT PARAMETERS ######
+
 PROGRAM_UNDER_TEST="$1"
 INP_FILE="$2"
 shift 2
 SPECS=$@
+
+########## CONSTANTS ##########
 
 COVERAGE=coverage
 ISLA="python3.10 -O -m isla"
@@ -59,21 +62,22 @@ main () {
   done
 }
 
-########## HELPERS ##########
+########## ISLa FUNCTIONS ##########
 
-prepare () {
-  rm -rf $POPULATION_DIR
-  mkdir $POPULATION_DIR
-  rm -rf $COVERAGES_DIR
-  mkdir $COVERAGES_DIR
+createInitialInput () {
+  # Create an initial input at `$POPULATION_DIR/inp_0.rst` and
+  # copy it to `$INP_FILE`
+
+  $ISLA solve $SPECS > $POPULATION_DIR/inp_0.rst
+  cp $POPULATION_DIR/inp_0.rst $INP_FILE
 }
 
-printInput () {
-  echo '```rst'
-  cat $1
-  echo '```'
-  echo 
+mutateInput () {
+  # Mutate the input in file `$1` and store it in `$INP_FILE`
+
+  $ISLA mutate $1 $SPECS -t 1 > $INP_FILE
 }
+
 
 ########## COVERAGE / POPULATION MGMT FUNCTIONS ##########
 
@@ -123,20 +127,21 @@ addToPopulationIfNewCoverage () {
   fi
 }
 
-########## ISLa FUNCTIONS ##########
+########## HELPERS ##########
 
-createInitialInput () {
-  # Create an initial input at `$POPULATION_DIR/inp_0.rst` and
-  # copy it to `$INP_FILE`
-
-  $ISLA solve $SPECS > $POPULATION_DIR/inp_0.rst
-  cp $POPULATION_DIR/inp_0.rst $INP_FILE
+prepare () {
+  rm -rf $POPULATION_DIR
+  mkdir $POPULATION_DIR
+  rm -rf $COVERAGES_DIR
+  mkdir $COVERAGES_DIR
 }
 
-mutateInput () {
-  # Mutate the input in file `$1` and store it in `$INP_FILE`
-
-  $ISLA mutate $1 $SPECS -t 1 > $INP_FILE
+printInput () {
+  echo '```rst'
+  cat $1
+  echo '```'
+  echo 
 }
+
 
 main "$@"
