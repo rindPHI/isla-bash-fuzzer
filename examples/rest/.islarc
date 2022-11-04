@@ -1,0 +1,7 @@
+[[defaults.default]]
+
+"--log-level" = "WARNING"
+
+[[defaults.solve]]
+
+"--weight-vector" = "7,1.5,2.5,2,18"
