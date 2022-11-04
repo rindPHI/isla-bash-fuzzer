@@ -1,15 +1,60 @@
 #!/usr/bin/env bash
 
 ########## CONSTANTS ##########
-CONSTRAINTS=../formalization/*.isla
+CONSTRAINTS=../examples/rest/*.isla
 COVERAGE=coverage
 COVERAGES_DIR=coverages
-GRAMMAR=../formalization/rest.bnf
+GRAMMAR=../examples/rest/rest.bnf
 INP_FILE=../input.rst
 ISLA="python3.10 -O -m isla"
 JSON=json
 POPULATION_DIR=population
-RENDERER=../render_rst.py
+RENDERER=../examples/rest/render_rst.py
+
+##################################
+########## MAIN ROUTINE ##########
+##################################
+
+main () {
+  prepare
+  
+  # Create initial input
+  createInitialInput
+  
+  echo "Initial input:"
+  printInput $INP_FILE
+  
+  # Mutation loop
+  cnt=1
+  while true
+  do
+    echo 
+    echo "=======================" 
+    echo "Round $cnt" 
+    echo "=======================" 
+    echo
+  
+    # Choose a random population member
+    next_inp=$(randomPopulationMember)
+  
+    # Mutate that input
+    mutateInput $next_inp
+    echo "New input:"
+    printInput $INP_FILE
+  
+    # Get its coverage
+    new_coverage=$(getCoverage)
+  
+    # Check if coverage is new
+    isNewCoverage $new_coverage
+  
+    # If coverage is new, add input to population, store new coverage
+    addToPopulationIfNewCoverage $new_coverage $cnt
+    rm $new_coverage
+  
+    cnt=$((cnt+1))
+  done
+}
 
 ########## HELPERS ##########
 
@@ -89,51 +134,6 @@ mutateInput () {
   # Mutate the input in file `$1` and store it in `$INP_FILE`
 
   $ISLA mutate $1 $GRAMMAR $CONSTRAINTS -t 1 > $INP_FILE
-}
-
-##################################
-########## MAIN ROUTINE ##########
-##################################
-
-main () {
-  prepare
-  
-  # Create initial input
-  createInitialInput
-  
-  echo "Initial input:"
-  printInput $INP_FILE
-  
-  # Mutation loop
-  cnt=1
-  while true
-  do
-    echo 
-    echo "=======================" 
-    echo "Round $cnt" 
-    echo "=======================" 
-    echo
-  
-    # Choose a random population member
-    next_inp=$(randomPopulationMember)
-  
-    # Mutate that input
-    mutateInput $next_inp
-    echo "New input:"
-    printInput $INP_FILE
-  
-    # Get its coverage
-    new_coverage=$(getCoverage)
-  
-    # Check if coverage is new
-    isNewCoverage $new_coverage
-  
-    # If coverage is new, add input to population, store new coverage
-    addToPopulationIfNewCoverage $new_coverage $cnt
-    rm $new_coverage
-  
-    cnt=$((cnt+1))
-  done
 }
 
 main "$@"
