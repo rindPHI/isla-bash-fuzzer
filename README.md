@@ -1,9 +1,10 @@
 # A Language-aware, Coverage-based Evolutionary Fuzzer Bash Script Based on ISLa
 
 This project demonstrates how to implement a simple evolutionary fuzzer around
-the `isla mutate` command, which mutates program inputs preserving syntactical
-and semantic language features. To demonstrate that in *essence*, it is really
-simple, we implemented the fuzzer in Bash :smiley:
+[ISLa's](https://github.com/rindPHI/isla) `isla mutate` command, which mutates
+program inputs preserving syntactical and semantic language features. To
+demonstrate that in *essence*, it is really simple, we implemented the fuzzer in
+Bash :smiley:
 
 The main file containing all the fuzzer code is `fuzzer/fuzz.sh`. Test subjects
 must be Python programs since we use the Python `coverage` module to obtain
@@ -33,4 +34,9 @@ cd examples/rest/
 python3.10 -m pip install -r requirements.txt  # Only needed once!
 ./run_fuzzer.sh
 ```
+
+## Copyright
+
+This project is released under the GNU General Public License v3.0 (see
+[COPYING](COPYING)).
 

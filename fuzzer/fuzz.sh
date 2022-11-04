@@ -1,4 +1,24 @@
 #!/usr/bin/env bash
+ 
+# Copyright © 2022 CISPA Helmholtz Center for Information Security.
+# Author: Dominic Steinhöfel.
+#
+# This file is part of ISLa Bash Fuzzer.
+#
+# ISLa Bash Fuzzer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# ISLa Bash Fuzzer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with ISLa Bash Fuzzer.  If not, see <http://www.gnu.org/licenses/>.
+
+
 
 # This script accepts three positional parameters and a list
 # of ISLa (grammar + constraints) specification files:
@@ -10,6 +30,8 @@
 #   INP_FILE:           A path to the file which should be passed to the program under test.
 #   SPECS:              Grammar (`.py` or `.bnf`) and constraint (`.isla`) files specifying
 #                       the input language of the program under test.
+
+
 
 ####### INPUT PARAMETERS ######
 
